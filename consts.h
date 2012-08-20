@@ -39,7 +39,6 @@
 #define BRAKE               2
 
 //Test configuration parameters
-#define NUM_TEST_PACKETS        20
 #define TEST_PACKET_INTERVAL_MS 200
 #define MOTOR_TEST_DUTY_CYCLE   50
 #define MOTOR_TEST_DURATION     10 //How long to run the motor (in seconds) during the test

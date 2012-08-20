@@ -130,31 +130,31 @@ class TestSuite():
                 self.print_packet(self.last_packet)
             time.sleep(1)
 
-    def test_gyro(self):
+    def test_gyro(self, num_test_packets):
         '''
         Description:
             Read the XYZ values from the gyroscope.
         '''
 
-        data_out = chr(kStatusUnused) + chr(kTestGyroCmd)
+        data_out = chr(kStatusUnused) + chr(kTestGyroCmd) + chr(num_test_packets)
 
-        if(self.check_conn()):
+        if self.check_conn():
             self.radio.tx(dest_addr=self.dest_addr, data=data_out)
-            time.sleep(0.5)
+            time.sleep(num_test_packets * 0.5)
 
-    def test_accel(self):
+    def test_accel(self, num_test_packets):
         '''
         Description:
             Read the XYZ values from the accelerometer.
         '''
 
-
-        data_out = chr(kStatusUnused) + chr(kTestAccelCmd)
+        data_out = chr(kStatusUnused) + chr(kTestAccelCmd) + chr(num_test_packets)
 
         packets_received = 0
         prev_data = None
         if(self.check_conn()):
             self.radio.tx(dest_addr=self.dest_addr, data=data_out)
+            time.sleep(num_test_packets * 0.5)
 
     def test_dflash(self):
         '''
@@ -166,6 +166,7 @@ class TestSuite():
         data_out = chr(kStatusUnused) + chr(kTestDFlashCmd)
         if(self.check_conn()):
             self.radio.tx(dest_addr=self.dest_addr, data=data_out)
+            time.sleep(1)
 
     def test_motor(self, motor_id, time, duty_cycle, direction, return_emf=0):
         '''
