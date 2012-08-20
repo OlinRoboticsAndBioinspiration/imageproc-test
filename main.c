@@ -31,13 +31,13 @@
 #include "payload.h"
 #include "at86rf.h"
 #include "radio.h"
+#include "radio_settings.h"
 #include "tests.h"
 #include "gyro.h"
 #include "xl.h"
 #include "dfmem.h"
 
 
-volatile WordVal src_addr, src_pan_id, dst_addr;
 Payload rx_payload;
 
 int main ( void )
@@ -61,18 +61,13 @@ int main ( void )
     SetupPWM();
     SetupTimer2();
 
-    src_addr.byte.LB = 0x10;
-    src_addr.byte.HB = 0x01;
-    src_pan_id.byte.LB = 0x00;
-    src_pan_id.byte.HB = 0x00;
-    // Default dest addr is for orange antenna basestation
-    dst_addr.byte.LB = 0x00;
-    dst_addr.byte.HB = 0x01;
+    WordVal pan_id    = {RADIO_PAN_ID};
+    WordVal src_addr  = {RADIO_SRC_ADDR};
+    WordVal dest_addr = {RADIO_DEST_ADDR};
 
-
-    radioInit(src_addr, src_pan_id, 10, 30);
-    radioSetDestAddr(dst_addr);
-    radioSetChannel(20);
+    radioInit(src_addr, pan_id, RADIO_RXPQ_MAX_SIZE, RADIO_TXPQ_MAX_SIZE);
+    radioSetDestAddr(dest_addr);
+    radioSetChannel(RADIO_MY_CHAN);
 
     char j;
     for(j=0; j<3; j++){
