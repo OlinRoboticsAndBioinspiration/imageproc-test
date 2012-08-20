@@ -1,7 +1,7 @@
 #ifndef __INTERRUPTS_H
 #define __INTERRUPTS_H
 
-#define TX_QUEUE_SIZE   128 
+#define TX_QUEUE_SIZE   128
 #define RX_QUEUE_SIZE   128
 
 void __attribute__((interrupt, no_auto_psv)) _INT0Interrupt(void);

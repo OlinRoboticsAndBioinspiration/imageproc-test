@@ -20,7 +20,7 @@
  * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
  * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
  * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * SUBSTIeUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
@@ -28,7 +28,7 @@
  *
  *
  * Series of test functions to test the functionality of the
- * ImageProc/CrawlerProc class of microcontroller-based robotics boards. 
+ * ImageProc/CrawlerProc class of microcontroller-based robotics boards.
  *
  * by Aaron M. Hoover
  *
@@ -36,12 +36,12 @@
  *
  * Revisions:
  *  Aaron M. Hoover      2011-05-02    Initial release
- *                      
+ *
  * Notes:
- *  A basic set of tests for testing all the functionality of the board. 
+ *  A basic set of tests for testing all the functionality of the board.
  *  Every test function must take four arguments - char type, unsigned char
  *  status, unsigned char length, and unsigned char* data. This is because
- *  pointers to these functions are stored in the function pointer queue 
+ *  pointers to these functions are stored in the function pointer queue
  *  that is the primary queue that's serviced by the main loop.
  *  For simplicity, if each function is called with the same type and number of
  *  arguments, we can always use the same call structure in the main loop.
@@ -71,19 +71,19 @@
 volatile Queue fun_queue;
 
 /*****************************************************************************
-* Function Name : test_radio  
+* Function Name : test_radio
 * Description   : Send out a packet containing the data in the array pointed to
 *                 by the 'data' argument passed in.
-* Parameters    : type - The type field of the radio test packet 
+* Parameters    : type - The type field of the radio test packet
 *                 status - Status field of radio test packet (not yet used)
 *                 length - The length of the payload data array
 *                 data - Pointer to the character array containing the payload
-*                 data to send back 
+*                 data to send back
 * Return Value  : success indicator - 0 for failed, 1 for succeeded
 *****************************************************************************/
 unsigned char test_radio(unsigned char type, unsigned char status,\
                          unsigned char length, unsigned char* data)
-{   
+{
     Payload pld;
     WordVal dest_addr;
 
@@ -99,9 +99,9 @@ unsigned char test_radio(unsigned char type, unsigned char status,\
 
 /*****************************************************************************
 * Function Name : test_gyro
-* Description   : Create and send out over the radio a number of test packets that 
+* Description   : Create and send out over the radio a number of test packets that
 *                 contain the three X,Y, and Z values read from the gyro.
-* Parameters    : type - The type field of the gyro test packet 
+* Parameters    : type - The type field of the gyro test packet
 *                 status - Status field of gyro test packet (not yet used)
 *                 length - The length of the payload data array
 *                 data - not used
@@ -109,10 +109,10 @@ unsigned char test_radio(unsigned char type, unsigned char status,\
 *****************************************************************************/
 unsigned char test_gyro(unsigned char type, unsigned char status,\
                          unsigned char length, unsigned char* data)
-{   
+{
     int i;
 
-    Payload pld; 
+    Payload pld;
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
     for(i=0; i < NUM_TEST_PACKETS; i++){
@@ -129,10 +129,10 @@ unsigned char test_gyro(unsigned char type, unsigned char status,\
 
 /*****************************************************************************
 * Function Name : test_accel
-* Description   : Create and send out over the radio a number of test packets that 
+* Description   : Create and send out over the radio a number of test packets that
 *                 contain the three X,Y, and Z values read from the
 *                 accelerometer.
-* Parameters    : type - The type field of the accelerometer test packet 
+* Parameters    : type - The type field of the accelerometer test packet
 *                 status - Status field of the accelerometer test packet (not yet used)
 *                 length - The length of the payload data array
 *                 data - not used
@@ -143,7 +143,7 @@ unsigned char test_accel(unsigned char type, unsigned char status,\
 {
     int i;
 
-    Payload pld; 
+    Payload pld;
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
 
@@ -166,9 +166,9 @@ unsigned char test_accel(unsigned char type, unsigned char status,\
 * Function Name : test_dflash
 * Description   : Write four different strings to a page in the data flash,
 *                 then read them back and send their contents out over the
-*                 radio. Bonus points if you can identify the film without 
+*                 radio. Bonus points if you can identify the film without
 *                 reverting to the internet.
-* Parameters    : type - The type field of the dflash test packet 
+* Parameters    : type - The type field of the dflash test packet
 *                 status - Status field of the dflash test packet (not yet used)
 *                 length - The length of the payload data array
 *                 data - not used
@@ -177,7 +177,7 @@ unsigned char test_accel(unsigned char type, unsigned char status,\
 unsigned char test_dflash(unsigned char type, unsigned char status, \
                           unsigned char length, unsigned char* data)
 {
-    Payload pld; 
+    Payload pld;
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
 
@@ -226,9 +226,9 @@ unsigned char test_dflash(unsigned char type, unsigned char status, \
 
 /*****************************************************************************
 * Function Name : test_motor
-* Description   : Turns on a specified motor for a specified period of time 
+* Description   : Turns on a specified motor for a specified period of time
 *                 and duty cycle
-* Parameters    : type - The type field of the motor test packet 
+* Parameters    : type - The type field of the motor test packet
 *                 status - Status field of the motor test packet (not yet used)
 *                 length - The length of the payload data array
 *                 data - data[0] = motor number
@@ -239,7 +239,7 @@ unsigned char test_dflash(unsigned char type, unsigned char status, \
 unsigned char test_motor(unsigned char type, unsigned char status, \
                           unsigned char length, unsigned char* data)
 {
-    Payload pld; 
+    Payload pld;
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
 
@@ -250,8 +250,8 @@ unsigned char test_motor(unsigned char type, unsigned char status, \
 
     motor_id = data[0];
     on_time = data[1];
-    //Duty cycle must be set to 100 - data[2] because the Freescale M17529 motor 
-    //controller uses H/H inputs to set the high impedance output state. 
+    //Duty cycle must be set to 100 - data[2] because the Freescale M17529 motor
+    //controller uses H/H inputs to set the high impedance output state.
 //    duty_cycle = 100 - data[2];
     duty_cycle = data[2];
     direction = data[3];
@@ -306,7 +306,7 @@ unsigned char test_motor(unsigned char type, unsigned char status, \
 
 unsigned char test_sma(unsigned char type, unsigned char status, \
                           unsigned char length, unsigned char* data)
-{   
+{
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
 
@@ -319,13 +319,13 @@ unsigned char test_sma(unsigned char type, unsigned char status, \
     if(chan_id == 1)
     {
         P1OVDCONbits.POVD3H = 1;
-        P1OVDCONbits.POVD3L = 0; 
-        P1OVDCONbits.POUT3L = 0; 
+        P1OVDCONbits.POVD3L = 0;
+        P1OVDCONbits.POUT3L = 0;
     }else
     {
-        P1OVDCONbits.POVD3L = 1; 
-        P1OVDCONbits.POVD3H = 0; 
-        P1OVDCONbits.POUT3H = 0; 
+        P1OVDCONbits.POVD3L = 1;
+        P1OVDCONbits.POVD3H = 0;
+        P1OVDCONbits.POUT3H = 0;
     }
 
     SetDCMCPWM(3, (2 * (long)PTPERvalue * (long)duty_cycle)/100, 0);
@@ -351,9 +351,9 @@ unsigned char test_sma(unsigned char type, unsigned char status, \
     return 1;
 }
 
-/* 
+/*
  * This version is for controlling the Freescale motor controller. The aim is
- * to phase the controller out for the Toshiba TB6612FNG. 
+ * to phase the controller out for the Toshiba TB6612FNG.
  */
 /*
 unsigned char set_motor_direction(unsigned char chan_num, unsigned char\
@@ -363,38 +363,38 @@ unsigned char set_motor_direction(unsigned char chan_num, unsigned char\
         case 1:
             //Braking case: override both and set both to low
             if (direction == BRAKE){
-                P1OVDCONbits.POVD1L = 0; 
+                P1OVDCONbits.POVD1L = 0;
                 P1OVDCONbits.POUT1L = 0;
-                P1OVDCONbits.POVD1H = 0; 
+                P1OVDCONbits.POVD1H = 0;
                 P1OVDCONbits.POUT1H = 0;
             //Reverse case: set 1L to PWM, override 1H and set high (to enable high impedance during off times)
             }else if (direction == REVERSE){
                 P1OVDCONbits.POVD1L = 1;
-                P1OVDCONbits.POVD1H = 0; 
+                P1OVDCONbits.POVD1H = 0;
                 P1OVDCONbits.POUT1H = 1;
             //Forward case: set 1H to PWM, override 1L and set high
-            }else if(direction == FORWARD){ 
-                P1OVDCONbits.POVD1L = 0; 
-                P1OVDCONbits.POVD1H = 1; 
+            }else if(direction == FORWARD){
+                P1OVDCONbits.POVD1L = 0;
+                P1OVDCONbits.POVD1H = 1;
                 P1OVDCONbits.POUT1L = 1;
             }
            break;
         case 2:
             //Braking case: override both and set both to low
             if (direction == BRAKE){
-                P1OVDCONbits.POVD2L = 0; 
+                P1OVDCONbits.POVD2L = 0;
                 P1OVDCONbits.POUT2L = 0;
-                P1OVDCONbits.POVD2H = 0; 
+                P1OVDCONbits.POVD2H = 0;
                 P1OVDCONbits.POUT2H = 0;
             //Reverse case: set 1L to PWM, override 1H and set high
-            }else if (direction == REVERSE){  
+            }else if (direction == REVERSE){
                 P1OVDCONbits.POVD2L = 1;
-                P1OVDCONbits.POVD2H = 0; 
+                P1OVDCONbits.POVD2H = 0;
                 P1OVDCONbits.POUT2H = 1;
             //Forward case: set 1H to PWM, override 1L and set low
-            }else if (direction == FORWARD){ 
-                P1OVDCONbits.POVD2L = 0; 
-                P1OVDCONbits.POVD2H = 1; 
+            }else if (direction == FORWARD){
+                P1OVDCONbits.POVD2L = 0;
+                P1OVDCONbits.POVD2H = 1;
                 P1OVDCONbits.POUT2L = 1;
             }
             break;
@@ -406,11 +406,11 @@ unsigned char set_motor_direction(unsigned char chan_num, unsigned char\
 */
 
 
-/* 
+/*
  * This version is for the TB6612 hardware which has a very different
- * configuration for controlling the motor direction. 
+ * configuration for controlling the motor direction.
  *
- * Forward = CW: PWM1H = High, PWM1L = Low. 
+ * Forward = CW: PWM1H = High, PWM1L = Low.
  * Reverse = CCW: PWM1H = Low, PWM1L = High.
  */
 
@@ -422,31 +422,31 @@ unsigned char set_motor_direction(unsigned char chan_num, unsigned char\
             //Reverse case: set 1L to PWM, override 1H and set  (to enable high impedance during off times)
             if (direction == REVERSE){
                 P1OVDCONbits.POVD1L = 1;
-                P1OVDCONbits.POVD1H = 0; 
+                P1OVDCONbits.POVD1H = 0;
                 P1OVDCONbits.POUT1H = 0;
             //Forward case: set 1H to PWM, override 1L and set high
-            }else if(direction == FORWARD){ 
-                P1OVDCONbits.POVD1L = 0; 
-                P1OVDCONbits.POVD1H = 1; 
+            }else if(direction == FORWARD){
+                P1OVDCONbits.POVD1L = 0;
+                P1OVDCONbits.POVD1H = 1;
                 P1OVDCONbits.POUT1L = 0;
             }
            break;
         case 2:
             //Braking case: override both and set both to low
             if (direction == BRAKE){
-                P1OVDCONbits.POVD2L = 0; 
+                P1OVDCONbits.POVD2L = 0;
                 P1OVDCONbits.POUT2L = 0;
-                P1OVDCONbits.POVD2H = 0; 
+                P1OVDCONbits.POVD2H = 0;
                 P1OVDCONbits.POUT2H = 0;
             //Reverse case: set 2L to PWM, override 2H and set high
-            }else if (direction == REVERSE){  
+            }else if (direction == REVERSE){
                 P1OVDCONbits.POVD2L = 1;
-                P1OVDCONbits.POVD2H = 0; 
+                P1OVDCONbits.POVD2H = 0;
                 P1OVDCONbits.POUT2H = 1;
             //Forward case: set 2H to PWM, override 2L and set low
-            }else if (direction == FORWARD){ 
-                P1OVDCONbits.POVD2L = 0; 
-                P1OVDCONbits.POVD2H = 1; 
+            }else if (direction == FORWARD){
+                P1OVDCONbits.POVD2L = 0;
+                P1OVDCONbits.POVD2H = 1;
                 P1OVDCONbits.POUT2L = 1;
             }
             break;

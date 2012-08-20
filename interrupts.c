@@ -1,8 +1,8 @@
 /*
- * Interrupt handlers. All tests are handled through timer 2 interrupt. 
+ * Interrupt handlers. All tests are handled through timer 2 interrupt.
  * Timer 2 runs at 100Hz and checks to see if a command packet has
  * been received. If so, it pushes the appropriate test routine onto
- * a function queue to be popped and executed in the main loop. 
+ * a function queue to be popped and executed in the main loop.
  *
  * Created: 2011-04-16
  * Author: AMH
@@ -38,7 +38,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
 void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void) {
     Payload rx_payload;
 
-    if (!radioIsRxQueueEmpty())  
+    if (!radioIsRxQueueEmpty())
     {
         rx_payload = radioReceivePayload();
         pqPush(rx_pay_queue, rx_payload);
@@ -47,12 +47,12 @@ void __attribute__((interrupt, no_auto_psv)) _T2Interrupt(void) {
             case RADIO_TEST:
                 queuePush(fun_queue, &test_radio);
                 break;
-			case GYRO_TEST:
+            case GYRO_TEST:
                 queuePush(fun_queue, &test_gyro);
-				break;
+                break;
             case ACCEL_TEST:
                 queuePush(fun_queue, &test_accel);
-				break;
+                break;
             case DFLASH_TEST:
                 queuePush(fun_queue, &test_dflash);
                 break;

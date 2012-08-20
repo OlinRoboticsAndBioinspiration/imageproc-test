@@ -17,16 +17,16 @@
 #define RADIO_TEST          0
 #define GYRO_TEST           1
 #define ACCEL_TEST          2
-#define DFLASH_TEST         3 
+#define DFLASH_TEST         3
 #define MOTOR_TEST          4
 #define SMA_TEST            5
 
 //Camera constants
 #define IMCOLS 160
-#define IMROWS 100 
+#define IMROWS 100
 
 //Communication constants
-#define TX_PAYLOAD_SIZE     128 
+#define TX_PAYLOAD_SIZE     128
 
 //Timer constants
 #define FT1                 100
