@@ -250,7 +250,5 @@ class TestSuite():
         Description:
             Clean up the connection when the object is deleted.
         '''
-        try:
-            self.conn.close()
-        except AttributeError:
-            pass
+        self.radio.halt()
+        self.conn.close()
