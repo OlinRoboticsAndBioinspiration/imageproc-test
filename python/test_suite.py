@@ -123,8 +123,7 @@ class TestSuite():
         header = chr(kStatusUnused) + chr(kTestRadioCmd)
         for i in range(1, 4):
             data_out = header + ''.join([chr(datum) for datum in range((i-1)*10,i*10)])
-            print data_out
-            print("Transmitting packet " + str(i) + "...")
+            print("\nTransmitting packet " + str(i) + "...")
             if(self.check_conn()):
                 self.radio.tx(dest_addr=self.dest_addr, data=data_out)
                 time.sleep(0.2)
