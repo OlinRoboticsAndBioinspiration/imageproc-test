@@ -15,24 +15,18 @@
  * Date: 2011-04-13
  * Author: AMH
  */
-#include "p33Fxxxx.h"
+
 #include "init.h"
 #include "init_default.h"
-#include "uart.h"
 #include "timer.h"
-#include "adc.h"
-#include "i2c.h"
-#include "interrupts.h"
-#include "ports.h"
-#include "ovcam.h"
-#include "consts.h"
 #include "utils.h"
+#include "queue.h"
 #include "payload_queue.h"
 #include "payload.h"
 #include "at86rf.h"
 #include "radio.h"
 #include "radio_settings.h"
-#include "tests.h"
+#include "tests.h" // TODO (fgb) : define/includes need to live elsewhere
 #include "gyro.h"
 #include "xl.h"
 #include "dfmem.h"
@@ -45,6 +39,7 @@ int main ( void )
     fun_queue = queueInit(FUN_Q_LEN);
     rx_pay_queue = pqInit(12); //replace 12 with a #define const later
     test_function tf;
+
     /* Initialization */
     SetupClock();
     SwitchClocks();
@@ -54,12 +49,11 @@ int main ( void )
     SetupI2C();
     SetupADC();
     SetupTimer1();
-    gyroSetup();
-// Jan. 11, 2012 - Accel not working at the moment. Suspect hardware
-    xlSetup();
-    dfmemSetup();
     SetupPWM();
     SetupTimer2();
+    gyroSetup();
+    xlSetup();
+    dfmemSetup();
 
     WordVal pan_id    = {RADIO_PAN_ID};
     WordVal src_addr  = {RADIO_SRC_ADDR};

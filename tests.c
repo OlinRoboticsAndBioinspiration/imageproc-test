@@ -47,19 +47,10 @@
  *  arguments, we can always use the same call structure in the main loop.
  */
 
-
 #include "tests.h"
-#include "p33Fxxxx.h"
-#include "uart.h"
-#include "timer.h"
-#include "adc.h"
-#include "i2c.h"
-#include "ports.h"
-#include "ovcam.h"
+#include "init.h"
 #include "consts.h"
 #include "utils.h"
-#include "init.h"
-#include "interrupts.h"
 #include "radio.h"
 #include "at86rf.h"
 #include "pwm.h"
