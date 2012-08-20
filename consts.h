@@ -3,7 +3,6 @@
 
 #define ADC_MAX             1023
 #define M_PI                3.14159265
-#define FCY                 40000000
 
 //Limits for numerical values of different types
 #define INT_MIN             -32768
