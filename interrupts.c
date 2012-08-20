@@ -13,7 +13,6 @@
 #include "tests.h"
 #include "init.h"
 #include "timer.h"
-#include "fpqueue.h"
 #include "payload.h"
 #include "radio.h"
 
