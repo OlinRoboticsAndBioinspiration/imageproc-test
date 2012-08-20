@@ -181,18 +181,18 @@ unsigned char test_dflash(unsigned char type, unsigned char status, \
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
 
-    unsigned char mem_data[256] = {};
-    unsigned char *str1 = "You must be here to fix the cable.";  // 38+1
-    unsigned char *str2 = "Lord. You can imagine where it goes from here.";  //46+1
-    unsigned char *str3 = "He fixes the cable?"; //19+1
-    unsigned char *str4 = "Don't be fatuous, Jeffrey."; //26+1
+    char mem_data[256] = {};
+    char *str1 = "You must be here to fix the cable.";  // 38+1
+    char *str2 = "Lord. You can imagine where it goes from here.";  //46+1
+    char *str3 = "He fixes the cable?"; //19+1
+    char *str4 = "Don't be fatuous, Jeffrey."; //26+1
 
     strcpy(mem_data, str1);
     strcpy(mem_data + strlen(str1), str2);
     strcpy(mem_data + strlen(str1) + strlen(str2), str3);
     strcpy(mem_data + strlen(str1) + strlen(str2) + strlen(str3), str4);
 
-    dfmemWrite (mem_data, sizeof(mem_data), 0x0100, 0, 1);
+    dfmemWrite((unsigned char *)(mem_data), sizeof(mem_data), 0x0100, 0, 1);
 
     pld = payCreateEmpty(strlen(str1));
     dfmemRead(0x0100, 0, strlen(str1), payGetData(pld));
