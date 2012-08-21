@@ -1,14 +1,9 @@
-#include "p33Fxxxx.h"
 #include "init.h"
-#include "adc.h"
 #include "i2c.h"
-#include "interrupts.h"
 #include "timer.h"
 #include "uart.h"
 #include "pwm.h"
 #include "ports.h"
-#include "consts.h"
-#include "utils.h"
 
 
 void SetupADC(void)

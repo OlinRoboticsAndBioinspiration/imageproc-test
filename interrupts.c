@@ -7,13 +7,9 @@
  * Created: 2011-04-16
  * Author: AMH
  */
-#include "interrupts.h"
-#include "utils.h"
 #include "consts.h"
 #include "tests.h"
-#include "init.h"
 #include "timer.h"
-#include "payload.h"
 #include "radio.h"
 
 
