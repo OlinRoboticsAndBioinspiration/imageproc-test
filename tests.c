@@ -47,19 +47,10 @@
  *  arguments, we can always use the same call structure in the main loop.
  */
 
-
 #include "tests.h"
-#include "p33Fxxxx.h"
-#include "uart.h"
-#include "timer.h"
-#include "adc.h"
-#include "i2c.h"
-#include "ports.h"
-#include "ovcam.h"
+#include "init.h"
 #include "consts.h"
 #include "utils.h"
-#include "init.h"
-#include "interrupts.h"
 #include "radio.h"
 #include "at86rf.h"
 #include "pwm.h"
@@ -115,7 +106,7 @@ unsigned char test_gyro(unsigned char type, unsigned char status,\
     Payload pld;
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
-    for(i=0; i < NUM_TEST_PACKETS; i++){
+    for(i=0; i < data[0]; i++){
         pld = payCreateEmpty(6);
         paySetType(pld, type);
         paySetStatus(pld, 0);
@@ -147,7 +138,7 @@ unsigned char test_accel(unsigned char type, unsigned char status,\
     WordVal dest_addr;
     dest_addr = radioGetDestAddr();
 
-    for (i=0; i < NUM_TEST_PACKETS; i++){
+    for (i=0; i < data[0]; i++){
         LED_1 = ~LED_1;
         pld = payCreateEmpty(6);
         paySetType(pld, type);
