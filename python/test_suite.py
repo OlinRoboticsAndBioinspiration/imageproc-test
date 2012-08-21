@@ -61,7 +61,7 @@ class TestSuite():
         if dev_name == "" or dev_name == None:
             print "You did not instantiate the class with a device name " + \
                     "(eg. COM5, /dev/tty.usbserial)."
-            sys.exit()
+            sys.exit(1)
 
         if dest_addr == '\xff\xff':
             print "Destination address is set to broadcast. You will " +\
@@ -117,7 +117,7 @@ class TestSuite():
             the results of a radio test. The results should be the
             receipt of three packets. The payloads of those three packets
             should print as consecutive integers 0-9, 10-19, and 20-29
-            respectively. 
+            respectively.
         '''
 
         header = chr(kStatusUnused) + chr(kTestRadioCmd)
@@ -177,9 +177,9 @@ class TestSuite():
             time        : The amount of time to turn the motor on for (in
                           seconds)
             duty_cycle  : The duty cycle of the PWM signal used to control the
-                          motor in percent (0 - 100) 
+                          motor in percent (0 - 100)
             direction   : The direction to spin the motor. There are *three*
-                          options for this parameter. 0 - reverse, 1 - forward, 
+                          options for this parameter. 0 - reverse, 1 - forward,
                           2 high impedance motor controller output = braking
             return_emf  : Send the back emf readings over the radio channel.
         '''

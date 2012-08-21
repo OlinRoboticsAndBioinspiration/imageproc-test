@@ -1,9 +1,9 @@
-/*********************************************************************************************************
-* Name: tests.h
-* Desc: CrawlerProc functionality test suite 
-* Date: 2011-04-16
-* Author: AMH
-*********************************************************************************************************/
+/*
+ * Name: tests.h
+ * Desc: CrawlerProc functionality test suite
+ * Date: 2011-04-16
+ * Author: AMH
+ */
 #include "queue.h"
 #include "payload_queue.h"
 
@@ -20,7 +20,7 @@
 extern volatile PayQueue rx_pay_queue;
 extern unsigned char argument, regaddr, regvalue;
 extern unsigned int i, j, rowcnt, imcnt;
-extern volatile Queue fun_queue; 
+extern volatile Queue fun_queue;
 
 // A function pointer type definition for all testing functions
 // All testing functions must take 3 char args and one char array
@@ -51,6 +51,6 @@ unsigned char set_motor_direction(unsigned char chan_num, unsigned char\
 extern unsigned char argument, regaddr, regvalue;
 extern unsigned int i, j, rowcnt, imcnt;
 
-extern volatile Queue fun_queue; 
+extern volatile Queue fun_queue;
 
 #endif

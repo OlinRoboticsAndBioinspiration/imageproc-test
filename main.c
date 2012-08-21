@@ -1,20 +1,20 @@
-/*********************************************************************************************************
-* Name: main.c
-* Desc: A test suite for the ImageProc 2.2 system. These tests should not be
-* considered rigorous, exhaustive tests of the hardware, but rather
-* "smoke tests" - ie. turn on the functionality and make sure the 
-* hardware/software doesn't start "smoking."
-*
-* The architecture is based on a function pointer queue scheduling model. The
-* meat of the testing logic resides in test.c. If the radio has received a 
-* command packet during the previous timer interval for Timer2, the appropriate
-* function pointer is added to a queue in the interrupt service routine for 
-* Timer2 (interrupts.c). The main loop simply pops the function pointer off
-* the top of the queue and executes it. 
-*
-* Date: 2011-04-13
-* Author: AMH
-*********************************************************************************************************/
+/*
+ * Name: main.c
+ * Desc: A test suite for the ImageProc 2.2 system. These tests should not be
+ * considered rigorous, exhaustive tests of the hardware, but rather
+ * "smoke tests" - ie. turn on the functionality and make sure the
+ * hardware/software doesn't start "smoking."
+ *
+ * The architecture is based on a function pointer queue scheduling model. The
+ * meat of the testing logic resides in test.c. If the radio has received a
+ * command packet during the previous timer interval for Timer2, the appropriate
+ * function pointer is added to a queue in the interrupt service routine for
+ * Timer2 (interrupts.c). The main loop simply pops the function pointer off
+ * the top of the queue and executes it.
+ *
+ * Date: 2011-04-13
+ * Author: AMH
+ */
 #include "p33Fxxxx.h"
 #include "init.h"
 #include "init_default.h"
@@ -25,7 +25,6 @@
 #include "interrupts.h"
 #include "ports.h"
 #include "ovcam.h"
-#include "fpqueue.h"
 #include "consts.h"
 #include "utils.h"
 #include "payload_queue.h"
@@ -43,14 +42,14 @@ Payload rx_payload;
 
 int main ( void )
 {
-    fun_queue = queueInit(FUN_Q_LEN); 
+    fun_queue = queueInit(FUN_Q_LEN);
     rx_pay_queue = pqInit(12); //replace 12 with a #define const later
     test_function tf;
     /* Initialization */
     SetupClock();
     SwitchClocks();
     SetupPorts();
-    
+
     SetupInterrupts();
     SetupI2C();
     SetupADC();
